@@ -26,42 +26,24 @@ using namespace std;
 using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-string intToBinary(int num) {
-    return bitset<32>(num).to_string();
-}
-unsigned long long binaryToInt64(const string &binary) {
-    return bitset<64>(binary).to_ullong();
-}
 void solve(){
-    ll n,m; cin>>n>>m;
-    if(m==0){
-        out(n)
-        return;
+    int n; cin>>n;
+    vii a(n),b(n);
+    map<int,int> mp1,mp2,mp3;
+    for(int i=0;i<n;i++) cin>>a[i];
+    for(int i=0;i<n;i++) cin>>b[i],mp2[b[i]]++;
+    int m; cin>>m;
+    vii d(m);
+    for(int i=0;i<m;i++) cin>>d[i],mp3[d[i]]++;
+    vii tmp;
+    for(int i=0;i<n;i++) if(a[i]!=b[i]) tmp.pb(b[i]),mp1[b[i]]++;
+    bool ok=true;
+    for(auto x:tmp){
+        if(mp1[x]>mp3[x]) ok=false;
     }
-    string a;
-    for(int i=0;i<32;i++){
-        a += "0";
-    }
-    n += m-1;
-    if(n<=0){
-        out(1)
-        return;
-    }
-    n++;
-    while(true){
-        string s=intToBinary(n);
-        reverse(all(s));
-        for(int i=0;i<32;i++){
-            if(s[i]=='1' && a[i]=='0'){
-                a[i]='1';
-            }
-        }
-        if((n&(n-1))==0 && n!=2) break;
-        n--;
-    }
-    reverse(all(a));
-    ll ans=binaryToInt64(a);
-    out(ans)
+    if(mp2[d[m-1]]==0) ok=false;
+    if(ok) yes
+    else no
 }
 love{
     Alamgir

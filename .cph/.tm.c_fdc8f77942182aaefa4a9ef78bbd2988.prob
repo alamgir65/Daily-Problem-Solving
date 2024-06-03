@@ -1,0 +1,1 @@
+{"name":"Local: tm","url":"c:\\Users\\mdabu\\Downloads\\Daily Problem Solving\\tm.c","tests":[{"id":1717095915969,"input":"3 3\n1 2 3\n4 5 6\n7 8 9\n\n1 2 3\n4 5 6\n7 8 9","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\mdabu\\Downloads\\Daily Problem Solving\\tm.c","group":"local","local":true}

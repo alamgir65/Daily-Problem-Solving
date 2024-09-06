@@ -32,17 +32,22 @@ void solve(){
     string s; cin>>s;
     int r=sqrt(n);
     if(r*r != n){
-        no;
+        cno
         return;
     }
     bool ok=true;
-    for(int i=0;i<n;i++){
+    for(int i=0;i<r;i++){
         for(int j=0;j<r;j++){
+            int flag;
             if(i==0 || j==0 || i==r-1 || j==r-1){
-                if(s[i])
+                flag=1;
             }
+            else flag=0;
+            if(s[i*r+j]-'0' != flag) ok=false;
         }
     }
+    if(ok) cyes
+    else cno
 }
 love{
     Alamgir

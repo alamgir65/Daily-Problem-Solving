@@ -28,33 +28,35 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    ll n,m; cin>>n>>m;
-    vll a(n);
-    map<ll,ll> mp;
-    ll ans=0;
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-        mp[a[i]]++;
+    int n; cin>>n;
+    vii a(n+1);
+    for(int i=1;i<=n;i++) cin>>a[i];
+    string s; cin>>s;
+    s = "#"+s;
+    // vll a(ans);
+    vll ans(n+1);
+    for(int i=1;i<=n;i++) ans[i]=-1;
+    for(int i=1;i<=n;i++){
+        int ss=0;
+        if(s[i]=='0') ss++;
+        if(ans[i] != -1) continue;
+        int x2=i;
+        vll v;
+        v.pb(i);
+        while(i != a[x2]){
+            x2 = a[x2];
+            v.pb(x2);
+            if(s[x2]=='0') ss++;
+        }
+        for(auto u:v){
+            ans[u]=ss;
+        }
     }
-    for(auto [x,y]:mp){
-        ll can=m/x;
-        can = min(can,1LL * y);
-        ll first_take = can * x;
-        ans = max(ans,first_take);
 
-        if(mp.find(x+1) == mp.end()) continue;
-
-        ll first_rem = m-first_take;
-        ll can_for_rem = first_rem/x+1;
-        can_for_rem = min(can_for_rem,mp[x+1]);
-        ll take_for_rem = can_for_rem * (x+1);
-        first_take += take_for_rem;
-        first_rem -= take_for_rem;
-        ll nxt = mp[x+1]-can_for_rem;
-
-        ans = max(ans,first_take + min({nxt,first_rem,can}));
+    for(int i=1;i<=n;i++){
+        cout<<ans[i]<<" ";
     }
-    out(ans)
+    nl
 }
 love{
     Alamgir

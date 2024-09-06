@@ -28,31 +28,11 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    ll n,m; cin>>n>>m;
-    vll a(n);
-    map<ll,ll> mp;
-    ll ans=0;
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-        mp[a[i]]++;
-    }
-    for(auto [x,y]:mp){
-        ll can=m/x;
-        can = min(can,1LL * y);
-        ll first_take = can * x;
-        ans = max(ans,first_take);
-
-        if(mp.find(x+1) == mp.end()) continue;
-
-        ll first_rem = m-first_take;
-        ll can_for_rem = first_rem/x+1;
-        can_for_rem = min(can_for_rem,mp[x+1]);
-        ll take_for_rem = can_for_rem * (x+1);
-        first_take += take_for_rem;
-        first_rem -= take_for_rem;
-        ll nxt = mp[x+1]-can_for_rem;
-
-        ans = max(ans,first_take + min({nxt,first_rem,can}));
+    int l,r; cin>>l>>r;
+    int x=0,ans=0;
+    for(int i=l;i<=r;i+=x){
+        ans++;
+        x++;
     }
     out(ans)
 }

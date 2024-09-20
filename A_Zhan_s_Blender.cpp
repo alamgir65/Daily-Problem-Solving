@@ -28,17 +28,10 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    ll n,s,m; cin>>n>>s>>m;
-    ll l=0,mx=imin;
-    for(int i=0;i<n;i++){
-        int x,y; cin>>x>>y;
-        mx=max(mx,x-l);
-        l=y;
-        if(i==n-1){
-            mx=max(mx,m-l);
-        }
-    }
-    print(mx>=s);
+    int n; cin>>n;
+    int x,y; cin>>x>>y;
+    int ans=n/(min(x,y)) + (n%(min(x,y))!=0);
+    out(ans)
 }
 love{
     Alamgir

@@ -25,20 +25,22 @@ using namespace std;
 #include<ext/pb_ds/assoc_container.hpp>
 #include<ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
- 
+const int MOD=1e9+7;
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    ll n,s,m; cin>>n>>s>>m;
-    ll l=0,mx=imin;
-    for(int i=0;i<n;i++){
-        int x,y; cin>>x>>y;
-        mx=max(mx,x-l);
-        l=y;
-        if(i==n-1){
-            mx=max(mx,m-l);
-        }
+    int n; cin>>n;
+    vii a(n);
+    for(int i=0;i<n;i++) cin>>a[i];
+    ll sum=0,ans=0;
+    for(auto x: a){
+        ans += sum*x;
+        sum += x;
+        // cout<<ans<<" ";
     }
-    print(mx>=s);
+    ans /= n;
+    ans /= (n-1);
+    ans *= 2;
+    out(ans%MOD)
 }
 love{
     Alamgir

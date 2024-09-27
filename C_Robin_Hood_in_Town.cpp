@@ -28,6 +28,25 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
+    int n; cin>>n;
+    vii a(n);
+    ll sum=0;
+    for(int i=0;i<n;i++) cin>>a[i],sum+=a[i];
+    int avg=sum/(2*n);
+    sort(all(a));
+    int main_avg = sum/n;
+    int big_big =0,half=n/2 + n%2;
+    for(int i=0;i<n;i++){
+        if(a[i]>main_avg) big_big++;
+    }
+    int middle=a[n/2];
+    if(middle < avg){
+        out(0)
+        return;
+    }
+    ll total = middle * (2*n) + 1;
+    if(n==1 || total-sum > (2*sum)) out(-1)
+    else out(total-sum)
     
 }
 love{

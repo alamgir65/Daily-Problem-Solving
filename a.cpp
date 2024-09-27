@@ -28,12 +28,17 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    
+    ll a; cin>>a;
+    int b=a;
+    for(int i=1;i<b;i++){
+        a *= b;
+    }
+    out(a)
 }
 love{
     Alamgir
     int t=1;
-    cin>>t;
+    // cin>>t;
     for(int i=1;i<=t;i++){
         // cout<<"Case "<<i<<": ";
         solve();

@@ -28,7 +28,17 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    
+    int n,d,k; cin>>n>>d>>k;
+    vii a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    vii track(n+1,0);
+    while(k--){
+        int l,r; cin>>l>>r;
+        track[l]++;
+        track[r]++;
+    }
 }
 love{
     Alamgir

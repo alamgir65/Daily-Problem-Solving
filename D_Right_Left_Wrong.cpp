@@ -29,26 +29,27 @@ using namespace __gnu_pbds;
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
     int n; cin>>n;
-    vii a(n+1);
-    for(int i=1;i<=n;i++){
-        cin>>a[i];
-        a[i] += a[i-1];
-    }
+    vii a(n);
+    for(int i=0;i<n;i++) cin>>a[i];
     string s; cin>>s;
-    s = "#" + s;
-    int l=1,r=n;
     ll sum=0;
-    while(l<r){
-        if(s[l]=='R') l++;
-        else if(s[r]=='L') r--;
-        else{
-            sum += a[r]-a[l-1];
-            l++;
-            r--;
+    vll pre(n);
+    pre[0]=a[0];
+    for(int i=1;i<n;i++) pre[i]=pre[i-1]+a[i];
+    int i=0,j=n-1;
+    while(i<j){
+        while(s[i]=='R') i++;
+        while(s[j]=='L') j--;
+        if(s[i]=='L' && s[j]=='R' && i<j){
+            ll tmp = 0;
+            if(i==0) tmp=pre[j];
+            else tmp=pre[j]-pre[i-1];
+            sum += tmp;
+            i++;
+            j--;
         }
     }
     out(sum)
-    
 }
 love{
     Alamgir

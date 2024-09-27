@@ -28,7 +28,25 @@ using namespace __gnu_pbds;
  
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
-    
+    int n,m,k; cin>>n>>m>>k;
+    vii a(n),b(m);
+    ll sum1=0,sum2=0;
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+        sum1 += a[i];
+    }
+    for(int i=0;i<m;i++){
+        cin>>b[i];
+        sum2 += b[i];
+    }
+    sort(all(a));
+    sort(all(b));
+    if(k%2==0){
+        out(sum1)
+    }else{
+        sum1 = max(sum1,sum1-a[0]+b[m-1]);
+        out(sum1)
+    }
 }
 love{
     Alamgir

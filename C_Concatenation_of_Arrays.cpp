@@ -43,6 +43,7 @@ void solve(){
         ans.pb(a[v[i].second].second);
     }
     for(auto x:ans) cout<<x<<" ";nl;
+    // some new
 }
 love{
     Alamgir

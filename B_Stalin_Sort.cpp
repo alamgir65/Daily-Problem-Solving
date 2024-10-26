@@ -31,19 +31,15 @@ void solve(){
     int n; cin>>n;
     vii a(n);
     for(int i=0;i<n;i++) cin>>a[i];
-    map<ll,ll> mp;
-    mp[0]=1;
-    ll sum=0,ans=0;
-    for(int i=0;i<n;i++){
-        sum += a[i];
-        if(mp.count(sum)){
-            ans++;
-            sum = 0;
-            mp.clear();
-        }
-        mp[sum]=1;
+    int ans=n-1;
+    int i=1;
+    while(a[i]>a[i-1]) i++;
+    for(int j=i-1;j<n;j++){
+        int cnt=j;
+        for(int k=j+1;k<n;k++) if(a[k]>a[j]) cnt++;
+        ans=min(ans,cnt);
     }
-    out(ans)
+    cout<<ans<<endl;
 }
 love{
     Alamgir

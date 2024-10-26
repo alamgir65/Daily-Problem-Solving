@@ -29,20 +29,13 @@ using namespace __gnu_pbds;
 template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 void solve(){
     int n; cin>>n;
-    vii a(n);
-    for(int i=0;i<n;i++) cin>>a[i];
-    map<ll,ll> mp;
-    mp[0]=1;
-    ll sum=0,ans=0;
+    int a=0,b=0;
     for(int i=0;i<n;i++){
-        sum += a[i];
-        if(mp.count(sum)){
-            ans++;
-            sum = 0;
-            mp.clear();
-        }
-        mp[sum]=1;
+        int x,y; cin>>x>>y;
+        a=max(a,x);
+        b=max(b,y);
     }
+    int ans=2*a + 2*b;
     out(ans)
 }
 love{

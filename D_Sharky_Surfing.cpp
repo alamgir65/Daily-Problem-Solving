@@ -62,61 +62,28 @@ void solve(){
     for(int i=0;i<m;i++){
         cin>>b[i].first>>b[i].second;
     }
-    vector<int> vv;
-    int i=0;
-    ll tmp=0;
+    
+    priority_queue<int> pq;
     bool flag=true;
-    ll ans=0;
-    for(int j=0;j<m&&i<n;j++){
-        int cnt=0;
-        vii v;
-        while(i<n && j<m && a[i].first > b[j].first){
-            tmp += b[j].second;
-            v.pb(b[j].second);
+    ll cnt=0,sum=0;
+    int j=0;
+    for(int i=0;i<n;i++){
+        while(j<m && a[i].first > b[j].first){
+            pq.push(b[j].second);
             j++;
         }
-        j--;
-        sort(all(v));
-        int k=0;
-        while(k<v.size() && tmp-v[k]>(a[i].second - a[i].first)){
-            tmp -= v[k];
-            k++;
+        while(pq.size() && sum < (a[i].second - a[i].first+1)){
+            sum += pq.top();
+            pq.pop();
             cnt++;
         }
-        while(k<v.size()){
-            vv.push_back(v[k++]);
-        }
-        vector<int> tmpp;
-        sort(vv.rbegin(),vv.rend());
-        k=vv.size()-1;
-        while(k>=0 && tmp<(a[i].second - a[i].first)){
-            tmp += vv[k--];
-        }
-        while(k>=0){
-            tmpp.push_back(vv[k--]);
-        }
-        vv.clear();
-        for(auto x:tmpp) vv.push_back(x);
-        if(tmp<(a[i].second - a[i].first)){
-            flag=false;
-            break;
-        }else{
-            ans += (v.size()-cnt);
-        }
-        i++;
-    }
-    while(i<n){
-        if(tmp <= (a[i].second - a[i].first)){
+        if(sum < (a[i].second - a[i].first+1)){
             flag=false;
             break;
         }
-        i++;
     }
-    if(!flag){
-        cout<<-1<<endl;
-        return;
-    }
-    out(ans)
+    if(!flag) out(-1)
+    else out(cnt)
 }
 love{
     Alamgir
